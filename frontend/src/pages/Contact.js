@@ -8,7 +8,7 @@ const ContactContainer = styled.div`
 const Contact = (props) => {
   return (
     <ContactContainer>
-      
+      Contact
     </ContactContainer>
   )
 }

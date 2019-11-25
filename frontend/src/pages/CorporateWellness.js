@@ -8,7 +8,7 @@ const CorporateWellnessContainer = styled.div`
 const CorporateWellness = (props) => {
   return (
     <CorporateWellnessContainer>
-      
+      Corporate Wellness
     </CorporateWellnessContainer>
   )
 }

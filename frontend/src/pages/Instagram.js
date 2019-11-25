@@ -8,7 +8,7 @@ const InstagramContainer = styled.div`
 const Instagram = (props) => {
   return (
     <InstagramContainer>
-
+      Instagram
     </InstagramContainer>
   )
 }

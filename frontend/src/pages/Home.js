@@ -8,7 +8,7 @@ const HomeContainer = styled.div`
 const Home = (props) => {
   return (
     <HomeContainer>
-      
+      Home
     </HomeContainer>
   )
 }
