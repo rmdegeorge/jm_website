@@ -9,6 +9,8 @@ import CorporateWellness from './pages/CorporateWellness';
 import Contact from './pages/Contact';
 import About from './pages/About';
 import Instagram from './pages/Instagram';
+import Blog from './pages/Blog';
+import Store from './pages/Store';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
@@ -28,6 +30,9 @@ const App = (props) => {
         <Route path="/Contact" component={Contact} />
         <Route path="/About" component={About} />
         <Route path="/Instagram" component={Instagram} />
+        <Route path="/Blog" component={Blog} />
+        <Route path="/Store" component={Store} />
+
       </Switch>
       <Footer />
     </AppContainer>
