@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import ContactForm from '../components/ContactForm';
+
 const ContactContainer = styled.div`
 
 `;
@@ -8,7 +10,7 @@ const ContactContainer = styled.div`
 const Contact = (props) => {
   return (
     <ContactContainer>
-      Contact
+      <ContactForm />
     </ContactContainer>
   )
 }
