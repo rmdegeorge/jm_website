@@ -6,7 +6,7 @@ import useContactForm from '../hooks/customHooks.js'
 const Form = styled.form`
   display: flex;
   flex-direction: column;
-  width: 50%;
+  width: 100%;
 
   > div {
     display: grid;
@@ -28,6 +28,9 @@ const TextInput = styled.input`
   :hover {
     background-color: rgba(0,0,0,0.1);
   }
+  :focus {
+    background-color: rgba(0,0,0,0.2);
+  }
 `;
 const TextArea = styled.textarea`
   border: none;
@@ -44,18 +47,28 @@ const TextArea = styled.textarea`
   :hover {
     background-color: rgba(0,0,0,0.1);
   }
+  :focus {
+    background-color: rgba(0,0,0,0.2);
+  }
 `;
 const Submit = styled.button`
   border: none;
   padding: 8px;
-  height: 4.5em;
+  height: 2em;
   width: 100%;
   margin: 8px;
   transition-duration: 0.4s;
   transition-timing-function: ease-in-out;
+  background-color: #000000;
+  color: #ffffff
+  font-size: 15pt;
+  font-weight: bold;
 
   :hover {
-    background-color: rgba(0,0,0,0.1);
+    background-color: rgba(0,0,0,0.5);
+  }
+  :focus {
+    background-color: rgba(0,0,0,0.5);
   }
 `;
 
