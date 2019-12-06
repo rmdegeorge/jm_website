@@ -40,6 +40,8 @@ const Navbar = (props) => {
         <NavLink to="/CorporateWellness">Corporate Wellness</NavLink>
         <NavLink to="/About">About</NavLink>
         <NavLink to="/Contact">Contact</NavLink>
+        <NavLink to="/Blog">Blog</NavLink>
+        <NavLink to="/Store">Store</NavLink>
       </LinkWrapper>
     </NavbarContainer>
   )
