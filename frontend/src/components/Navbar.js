@@ -14,10 +14,14 @@ const NavbarContainer = styled.div`
   left: 0;
   right: 0;
 `;
-const Title = styled.div`
+const Logo = styled.div`
   width: 90%;
   border-bottom: 1px solid grey;
   text-align: center;
+  > img {
+    width: 100px;
+    height: auto;
+  }
 `;
 const LinkWrapper = styled.div`
   display: flex;
@@ -31,9 +35,9 @@ const LinkWrapper = styled.div`
 const Navbar = (props) => {
   return (
     <NavbarContainer>
-      <Title>
-        <h1>Jasper Moon Wellness</h1>
-      </Title>
+      <Logo>
+        <img src="../assets/JM_wordmark_blk.png" alt="Jasper Moon Wellness" />
+      </Logo>
       <LinkWrapper>
         <NavLink to="/">Home</NavLink>
         <NavLink to="/Classes">Classes</NavLink>
