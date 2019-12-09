@@ -2,18 +2,19 @@ import React from 'react';
 import styled from 'styled-components';
 
 const FooterContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
   width: 100%;
-  height: auto;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  height: 100px;
+  padding: 16px
 `;
 
 const Footer = (props) => {
   return (
     <FooterContainer>
-      Footer
+      ©2019 by Jasper Moon Wellness
     </FooterContainer>
   )
 }
