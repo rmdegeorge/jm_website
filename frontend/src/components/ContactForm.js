@@ -1,5 +1,6 @@
 import React, {useState, useEffect, useContext} from 'react';
 import styled from 'styled-components';
+import axios from 'axios';
 
 import useContactForm from '../hooks/customHooks.js'
 
@@ -73,15 +74,27 @@ const Submit = styled.button`
 `;
 
 function ContactForm(props) {
-  const doAThing = () => {              // this is where I put the functionality of the form submit
-    alert(`Message Sent
-          Name: ${inputs.firstName} ${inputs.lastName}
-          Email: ${inputs.Email}
-          Phone: ${inputs.phone}
-          Subject: ${inputs.subject}
-          Message: ${inputs.message}`)
+  const sendMessage = () => {              // this is where I put the functionality of the form submit
+    axios.post('/send', inputs)
+      .then((res) => {
+        if (res.data.status === 'success') {
+          alert("Message Sent! Jasper will get back to you as soon as possible.")
+          //************* Should make a function that clears the form here *******************//
+        } else if (res.data.status === 'fail') {
+          alert("Message failed to send. Sorry for the inconvenience.")
+        };
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+    // alert(`Message Sent
+    //       Name: ${inputs.firstName} ${inputs.lastName}
+    //       Email: ${inputs.Email}
+    //       Phone: ${inputs.phone}
+    //       Subject: ${inputs.subject}
+    //       Message: ${inputs.message}`)
   }
-  const {inputs, handleChange, handleSubmit} = useContactForm(doAThing);
+  const {inputs, handleChange, handleSubmit} = useContactForm(sendMessage);
 
   return (
     <Form onSubmit={handleSubmit}>

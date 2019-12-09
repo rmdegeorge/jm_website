@@ -1,8 +1,8 @@
 import React from 'react';
 import {Switch, Route} from 'react-router-dom';
-import styled from 'styled-components';
+import styled, {ThemeProvider} from 'styled-components';
 
-import GlobalStyle from './theme/GlobalStyle';
+import GlobalStyle, {theme} from './theme/GlobalStyle';
 import Home from './pages/Home';
 import Classes from './pages/Classes';
 import CorporateWellness from './pages/CorporateWellness';
@@ -20,22 +20,24 @@ const AppContainer = styled.div`
 
 const App = (props) => {
   return (
-    <AppContainer>
-      <GlobalStyle />
-      <Navbar />
-      <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/Classes" component={Classes} />
-        <Route path="/CorporateWellness" component={CorporateWellness} />
-        <Route path="/Contact" component={Contact} />
-        <Route path="/About" component={About} />
-        <Route path="/Instagram" component={Instagram} />
-        <Route path="/Blog" component={Blog} />
-        <Route path="/Store" component={Store} />
+    <ThemeProvider theme={theme}>
+      <AppContainer>
+        <GlobalStyle />
+        <Navbar />
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/Classes" component={Classes} />
+          <Route path="/CorporateWellness" component={CorporateWellness} />
+          <Route path="/Contact" component={Contact} />
+          <Route path="/About" component={About} />
+          <Route path="/Instagram" component={Instagram} />
+          <Route path="/Blog" component={Blog} />
+          <Route path="/Store" component={Store} />
 
-      </Switch>
-      <Footer />
-    </AppContainer>
+        </Switch>
+        <Footer />
+      </AppContainer>
+    </ThemeProvider>
   )
 }
 
