@@ -1,5 +1,5 @@
 import React from 'react';
-import {Switch, Route} from 'react-router-dom';
+import {Switch, Route, withRouter} from 'react-router-dom';
 import styled, {ThemeProvider} from 'styled-components';
 
 import GlobalStyle, {theme} from './theme/GlobalStyle';
@@ -13,12 +13,16 @@ import Blog from './pages/Blog';
 import Store from './pages/Store';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import Admin from './Admin';
+import EditClasses from './admin/EditClasses';
+import EditBlog from './admin/EditBlog';
 
 const AppContainer = styled.div`
 
 `;
 
 const App = (props) => {
+  console.log(props.location.pathname);
   return (
     <ThemeProvider theme={theme}>
       <AppContainer>
@@ -33,7 +37,9 @@ const App = (props) => {
           <Route path="/Instagram" component={Instagram} />
           <Route path="/Blog" component={Blog} />
           <Route path="/Store" component={Store} />
-
+          <Route exact path="/admin" component={Admin} />
+          <Route path="/admin/EditClasses" component={EditClasses} />
+          <Route path="/admin/EditBlog" component={EditBlog} />
         </Switch>
         <Footer />
       </AppContainer>
@@ -41,4 +47,4 @@ const App = (props) => {
   )
 }
 
-export default App;
+export default withRouter(App);
