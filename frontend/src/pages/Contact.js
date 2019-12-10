@@ -17,7 +17,7 @@ const Contact = (props) => {
         Let's Connect
         Get in touch to learn more about classes, workshops, and making yoga a part of your lifestyle.
         Salt Lake City, UT, USA
-        jessjasperrobertson@gmail.com (let's consider replacing your email with a link to the contact form may help reduce spam)
+        JasperMoonWellness@gmail.com (let's consider replacing your email with a link to the contact form may help reduce spam)
         +1 (385) 272-1370
       </div>
       <ContactForm />

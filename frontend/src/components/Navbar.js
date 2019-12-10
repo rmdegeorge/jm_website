@@ -51,7 +51,7 @@ const NavLink = styled(Link)`
 `;
 
 const Navbar = (props) => {
-  const pathCheckPattern = new RegExp('^' + "/admin".replace(/[\-\[\]\/\{\}\(\)\*\+\?\.\\\^\$\|]/g, "\\$&"), 'i');
+  const pathCheckPattern = new RegExp('^/admin', 'i');
   console.log('pathname:');
   console.log(props.location.pathname);
   console.log('pathcheckpattern');
