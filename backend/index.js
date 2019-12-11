@@ -1,12 +1,19 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const morgan = require("morgan");
 const app = express();
 const path = require("path");
+const expressJwt = require("express-jwt");
+
 require("dotenv").config();
+
 const PORT = process.env.PORT || 5000;
 
+app.use(morgan("dev"));
 app.use(express.json());
 app.use('/send', require('./routes/contactRouter'));
+app.use('/api', expressJwt({secret: process.env.SECRET}));
+app.use("/auth", require("./routes/authRouter"));
 
 app.use(express.static(path.join(__dirname, "client", "build")));
 
