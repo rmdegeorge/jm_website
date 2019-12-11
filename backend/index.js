@@ -15,10 +15,12 @@ app.use(express.json());
 // send email from contact form
 app.use('/send', require('./routes/contactRouter'));
 
-// require token for routes starting with /api
-app.use('/api', expressJwt({secret: process.env.SECRET}));
-app.use('/api/yogaclass', require('./routes/yogaClassRouter'));
-app.use('/api/blogpost', require('./routes/blogPostRouter'));
+// require token for routes starting with /admin
+app.use('/admin', expressJwt({secret: process.env.SECRET}));
+app.use('/admin/yogaclass', require('./routes/yogaClassAdminRouter'));
+app.use('/admin/blogpost', require('./routes/blogPostAdminRouter'));
+app.use('/public/yogaclass', require('./routes/yogaClassPublicRouter'));
+app.use('/public/blogpost', require('./routes/blogPostPublicRouter'));
 
 app.use('/auth', require('./routes/authRouter'));
 app.use(express.static(path.join(__dirname, "client", "build")));

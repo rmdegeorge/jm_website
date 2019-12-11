@@ -64,5 +64,5 @@ blogPostRouter.route('/:_id')
       }
     );
   });
-  
+
 module.exports = blogPostRouter;
