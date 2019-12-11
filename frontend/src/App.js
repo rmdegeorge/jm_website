@@ -22,7 +22,6 @@ const AppContainer = styled.div`
 `;
 
 const App = (props) => {
-  console.log(props.location.pathname);
   return (
     <ThemeProvider theme={theme}>
       <AppContainer>
