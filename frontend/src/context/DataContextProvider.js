@@ -7,6 +7,8 @@ export default function DataContextProvider(props){
   // State
   const [yogaClasses, setYogaClasses] = useState([]);
   const [blogPosts, setBlogPosts] = useState([]);
+  // set token state to token from local storage. if not set token state to empty string
+  const [token, setToken] = useState(localStorage.getItem("token") || "");
 
   //functions
   function getAllYogaClasses() {
