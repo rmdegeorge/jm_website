@@ -3,7 +3,7 @@ import React, {useState} from 'react';
 export const DataContext = React.createContext();
 
 export default function DataContextProvider(props){
-  const [classes, setClasses] = useState("");
+  const [classes, setClasses] = useState([]);
 
   return (
     <DataContext.Provider

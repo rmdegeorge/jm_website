@@ -11,7 +11,7 @@ const blogPostSchema = new Schema({
     default: Date.now
   },
   body: {
-    type: String,
+    type: [String],
     required: true
   },
   tags: [String]

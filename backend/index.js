@@ -11,10 +11,18 @@ const PORT = process.env.PORT || 5000;
 
 app.use(morgan("dev"));
 app.use(express.json());
+
+// send email from contact form
 app.use('/send', require('./routes/contactRouter'));
+
+// require token for routes starting with /api
 app.use('/api', expressJwt({secret: process.env.SECRET}));
+app.use('/api/yogaclass', require('./routes/yogaClassRouter'));
+app.use('/api/blogpost', require('./routes/blogPostRouter'));
+
 app.use('/auth', require('./routes/authRouter'));
 app.use(express.static(path.join(__dirname, "client", "build")));
+
 // error handling middleware
 app.use((err,req,res,next) => {
   if (err.name === "UnautorizedError") {
