@@ -16,9 +16,8 @@ const Classes = (props) => {
   const {yogaClasses, getAllYogaClasses} = useContext(DataContext);
 
   useEffect(() => {
-    getAllYogaClasses()
-  }, [])
-  console.log(yogaClasses)
+    getAllYogaClasses();
+  }, []);
 
   const displayYogaClasses = yogaClasses.map((yogaClass) =>
     <ClassCard key={yogaClass._id}>
@@ -26,7 +25,7 @@ const Classes = (props) => {
         {yogaClass.name}
       </ClassTitle>
         {yogaClass.body.map((paragraph, i) =>
-          <ClassDescription key={yogaClass._id + i}>
+          <ClassDescription key={yogaClass._id + "paragraph" + i}>
             {paragraph}
           </ClassDescription>
         )}
