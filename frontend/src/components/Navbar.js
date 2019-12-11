@@ -52,12 +52,6 @@ const NavLink = styled(Link)`
 
 const Navbar = (props) => {
   const pathCheckPattern = new RegExp('^/admin', 'i');
-  console.log('pathname:');
-  console.log(props.location.pathname);
-  console.log('pathcheckpattern');
-  console.log(pathCheckPattern);
-  console.log('tested:')
-  console.log(pathCheckPattern.test('/admin'));
   return (
     <NavbarContainer>
       <Header>
