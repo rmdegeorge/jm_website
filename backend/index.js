@@ -11,17 +11,33 @@ const PORT = process.env.PORT || 5000;
 
 app.use(morgan("dev"));
 app.use(express.json());
-app.use('/send', require('./routes/contactRouter'));
-app.use('/api', expressJwt({secret: process.env.SECRET}));
-app.use("/auth", require("./routes/authRouter"));
 
+// send email from contact form
+app.use('/send', require('./routes/contactRouter'));
+
+// require token for routes starting with /api
+app.use('/api', expressJwt({secret: process.env.SECRET}));
+app.use('/api/yogaclass', require('./routes/yogaClassRouter'));
+app.use('/api/blogpost', require('./routes/blogPostRouter'));
+
+app.use('/auth', require('./routes/authRouter'));
 app.use(express.static(path.join(__dirname, "client", "build")));
+
+// error handling middleware
+app.use((err,req,res,next) => {
+  if (err.name === "UnautorizedError") {
+    res.status(err.status)
+  }
+  console.error(err);
+  return res.send({errMsg: err.message});
+});
 
 mongoose.connect(
   process.env.MONGODB_URI || 'mongodb://localhost:27017/JM_Wellness',
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useCreateIndex: true,
     useFindAndModify: false
   }
 )
