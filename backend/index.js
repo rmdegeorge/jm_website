@@ -13,15 +13,23 @@ app.use(morgan("dev"));
 app.use(express.json());
 app.use('/send', require('./routes/contactRouter'));
 app.use('/api', expressJwt({secret: process.env.SECRET}));
-app.use("/auth", require("./routes/authRouter"));
-
+app.use('/auth', require('./routes/authRouter'));
 app.use(express.static(path.join(__dirname, "client", "build")));
+// error handling middleware
+app.use((err,req,res,next) => {
+  if (err.name === "UnautorizedError") {
+    res.status(err.status)
+  }
+  console.error(err);
+  return res.send({errMsg: err.message});
+});
 
 mongoose.connect(
   process.env.MONGODB_URI || 'mongodb://localhost:27017/JM_Wellness',
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
+    useCreateIndex: true,
     useFindAndModify: false
   }
 )

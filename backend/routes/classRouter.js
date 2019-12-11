@@ -4,26 +4,35 @@ const classRouter = express.Router();
 
 classRouter.route('/')
   // get all classes
-  .get((req, res) => {
+  .get((req, res, next) => {
     Class.find((err, classes) => {
-      if (err) return res.status(500).send(err);
+      if (err) {
+        res.status(500);
+        return next(err)
+      };
       return res.status(200).send(classes);
     });
   });
   // post new class
-  .post((req, res) => {
+  .post((req, res, next) => {
     const newClass = new Class(req.body);
     newClass.save((err, class) => {
-      if (err) return res.status(500).send(err);
+      if (err) {
+        res.status(500)
+        return next(err)
+      };
       return res.status(201).send(class);
     });
   });
 
 classRouter.route('/:_id')
   // get one class
-  .get((req, res) => {
+  .get((req, res, next) => {
     Class.findById(req.params._id, (err, class) => {
-      if (err) return res.status(500).send(err);
+      if (err) {
+        res.status(500);
+        return next(err);
+      };
       return res.status(200).send(class);
     });
   });
@@ -50,4 +59,4 @@ classRouter.route('/:_id')
     );
   });
 
-module.exports = commentRouter;
+module.exports = classRouter;
