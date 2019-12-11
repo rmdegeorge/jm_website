@@ -29,10 +29,9 @@ export default function DataContextProvider(props){
   };
   function formatDate(date) {
     let newDate = new Date(date)
-    console.log(`${newDate.toLocaleTimeString()} ${newDate.toLocaleDateString()}`)
     return `${newDate.toLocaleTimeString()} ${newDate.toLocaleDateString()}`;
   };
-  
+
   return (
     <DataContext.Provider
       value={{
