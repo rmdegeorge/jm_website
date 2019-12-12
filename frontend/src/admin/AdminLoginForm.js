@@ -1,6 +1,7 @@
-import React, {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import styled from 'styled-components';
 import {useInput} from '../hooks/customHooks';
+import {DataContext} from '../context/DataContextProvider';
 
 const FormWrapper = styled.form`
   display: flex;
@@ -10,13 +11,14 @@ const FormWrapper = styled.form`
 `;
 
 export default function AdminLoginForm(props) {
+  const {login} = useContext(DataContext);
   const {value: username, bind: bindUsername, reset: resetUsername} = useInput('');
   const {value: password, bind: bindPassword, reset: resetPassword} = useInput('');
   const inputs = {username, password};
 
   function handleLoginSubmit(e) {
     e.preventDefault();
-    // do the thing, verify the creds
+    login(username,password);
     resetUsername();
     resetPassword();
   }
