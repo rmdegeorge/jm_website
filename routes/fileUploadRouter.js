@@ -9,7 +9,7 @@ fileUploadRouter.post("/", (req,res,next) => {
     return next(new Error("No file uploaded"));
   };
   const file = req.files.file;
-  file.mv(`${__dirname}/client/src/assets/uploads/${file.name}`, (err) => {
+  file.mv(`./client/public/uploads/${file.name}`, (err) => {
     if (err) {
       console.error(err);
       res.status(500);

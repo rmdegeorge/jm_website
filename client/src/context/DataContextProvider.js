@@ -85,14 +85,12 @@ export default function DataContextProvider(props){
   };
   function editBlogPost() {
 
-  }
+  };
   function formatDate(date) {
     let newDate = new Date(date)
     return `${newDate.toLocaleTimeString()} ${newDate.toLocaleDateString()}`;
   };
-  function handleFileUpload() {
 
-  }
 
   return (
     <DataContext.Provider
@@ -110,7 +108,6 @@ export default function DataContextProvider(props){
         addNewBlogPost,
         editYogaClass,
         editBlogPost,
-        handleFileUpload,
 
       }}>
       {props.children}

@@ -5,6 +5,8 @@ import {DataContext} from '../context/DataContextProvider';
 
 import {Form, TextInput, TextArea, Submit, Button} from '../components/styledFormComponents/StyledFormComponents';
 
+import FileUploader from '../components/FileUploader';
+
 const FormWrapper = styled(Form)`
   display: flex;
   flex-direction: column;
@@ -34,19 +36,14 @@ export default function EditClassForm(props) {
     };
   };
 
-  function handleFileSelected(e) {
-    setSelectedFile(e.target.files[0]);
-  }
-  function handleFileUpload() {
 
-  }
 
   return (
     <FormWrapper onSubmit={handleSubmit}>
       <TextInput name="name" type="text" placeholder="Name" {...bindName} required />
       <TextArea name="body" placeholder="Body" {...bindBody} required />
       <TextInput name="tags" placeholder="Tags" {...bindTags} />
-      <input type="file" onChange={handleFileSelected} /><Button onClick={handleFileUpload}>Upload File</Button>
+      <FileUploader />
       {props.type === "new" ? <Submit type="submit">Add</Submit> : <Submit>Save</Submit>}
     </FormWrapper>
   );
