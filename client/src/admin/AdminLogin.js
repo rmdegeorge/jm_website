@@ -17,7 +17,6 @@ const WelcomeMessage = styled.div`
 
 function AdminLogin(props) {
   const {token,user} = useContext(DataContext);
-  console.log(user)
   return(
     <AdminLoginWrapper>
       {

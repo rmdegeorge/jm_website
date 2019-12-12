@@ -11,11 +11,6 @@ adminAxios.interceptors.request.use((config) => {
 export const DataContext = React.createContext();
 
 export default function DataContextProvider(props){
-  // localStorage.removeItem("user")
-  // localStorage.removeItem("token")
-  // console.log('localStorage')
-  // console.log(localStorage)
-  
   // State
   const [yogaClasses, setYogaClasses] = useState([]);
   const [blogPosts, setBlogPosts] = useState([]);
@@ -28,15 +23,16 @@ export default function DataContextProvider(props){
     const credentials = {username: user, password: password};
     return adminAxios.post("/auth/login", credentials)
       .then((res) => {
-        console.log('login form response:')
-        console.log(res.data)
         const {token, user} = res.data;
         localStorage.setItem("token", token);
         localStorage.setItem("user", JSON.stringify(user));
         setUser(user);
         setToken(token);
         return res;
-      });
+      })
+      .catch((err) => {
+        console.error(err);
+      })
   };
   function logout() {
     localStorage.removeItem("user");
@@ -53,6 +49,20 @@ export default function DataContextProvider(props){
         console.error(err);
       });
   };
+  function addNewYogaClass(name, body, tags) {
+    const bodyArray = body.split('\n')
+    const newYogaClass = {name, body: bodyArray, tags}
+    adminAxios.post("/admin/yogaclass", newYogaClass)
+      .then((res) => {
+        getAllYogaClasses();
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+  function editYogaClass() {
+
+  }
   function getAllBlogPosts() {
     axios.get("/public/blogpost")
       .then((res) => {
@@ -61,6 +71,20 @@ export default function DataContextProvider(props){
       .catch((err) => {
         console.error(err);
       });
+  };
+  function addNewBlogPost(title, body, tags) {
+    const bodyArray = body.split('\n')
+    const newBlogPost = {title, body: bodyArray, tags};
+    adminAxios.post("/admin/blogpost", newBlogPost)
+      .then((res) => {
+        getAllBlogPosts();
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+  function editBlogPost() {
+
   };
   function formatDate(date) {
     let newDate = new Date(date)
@@ -80,6 +104,10 @@ export default function DataContextProvider(props){
         token,
         login,
         logout,
+        addNewYogaClass,
+        addNewBlogPost,
+        editYogaClass,
+        editBlogPost,
 
       }}>
       {props.children}
