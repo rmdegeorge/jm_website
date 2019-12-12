@@ -1,7 +1,7 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import styled from 'styled-components';
 import {Link, withRouter} from 'react-router-dom';
-
+import {DataContext} from '../context/DataContextProvider';
 
 import WordmarkClay from '../assets/JM_wordmark_clay.png';
 
@@ -51,6 +51,7 @@ const NavLink = styled(Link)`
 `;
 
 const Navbar = (props) => {
+  const {token, logout} = useContext(DataContext);
   const pathCheckPattern = new RegExp('^/admin', 'i');
   return (
     <NavbarContainer>
@@ -62,6 +63,7 @@ const Navbar = (props) => {
       {
         !pathCheckPattern.test(props.location.pathname)
         ?
+        // if not admin
         <LinkWrapper>
           <NavLink to="/About">About</NavLink>
           <NavLink to="/Classes">Classes</NavLink>
@@ -71,11 +73,17 @@ const Navbar = (props) => {
           <NavLink to="/Contact">Contact</NavLink>
         </LinkWrapper>
         :
+        token
+        ?
+        // if admin and logged in
         <LinkWrapper>
-          <NavLink to="/admin">Admin Login</NavLink>
+          <NavLink to="/admin" onClick={logout}>Logout</NavLink>
           <NavLink to="/admin/EditClasses"> Edit Classes</NavLink>
           <NavLink to="/admin/EditBlog">Edit Blog</NavLink>
         </LinkWrapper>
+        :
+        // if admin and not logged in
+        <NavLink to="/admin">Admin Login</NavLink>
       }
     </NavbarContainer>
   )
