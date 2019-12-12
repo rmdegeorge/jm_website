@@ -12,15 +12,13 @@ const FormWrapper = styled.form`
 
 export default function AdminLoginForm(props) {
   const {login} = useContext(DataContext);
-  const {value: username, bind: bindUsername, reset: resetUsername} = useInput('');
-  const {value: password, bind: bindPassword, reset: resetPassword} = useInput('');
+  const {value: username, bind: bindUsername} = useInput('');
+  const {value: password, bind: bindPassword} = useInput('');
   const inputs = {username, password};
 
   function handleLoginSubmit(e) {
     e.preventDefault();
     login(username,password);
-    resetUsername();
-    resetPassword();
   }
   return (
     <FormWrapper onSubmit={handleLoginSubmit}>
