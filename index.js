@@ -5,15 +5,21 @@ const app = express();
 const path = require("path");
 const expressJwt = require("express-jwt");
 
+const fileUpload = require('express-fileupload');
+
 require("dotenv").config();
 
 const PORT = process.env.PORT || 5000;
 
 app.use(morgan("dev"));
 app.use(express.json());
+app.use(fileUpload());
 
 // send email from contact form
 app.use('/send', require('./routes/contactRouter'));
+
+// upload files
+app.use('/upload', require('./routes/fileUploadRouter'));
 
 // require token for routes starting with /admin
 app.use('/admin', expressJwt({secret: process.env.SECRET}));
@@ -55,5 +61,5 @@ mongoose.connect(
   });
 
   app.listen(PORT, () => {
-    console.log(`App is listening on port ${PORT}`)
+    console.log(`Server listening on port ${PORT}`)
   });

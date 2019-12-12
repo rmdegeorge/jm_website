@@ -62,3 +62,23 @@ export const Submit = styled.button`
     background-color: rgba(0,0,0,0.5);
   }
 `;
+export const Button = styled.button`
+border: none;
+padding: 8px;
+height: 2em;
+width: 150px;
+margin: 8px;
+transition-duration: 0.4s;
+transition-timing-function: ease-in-out;
+background-color: #000000;
+color: #ffffff
+font-size: 15pt;
+font-weight: bold;
+
+:hover {
+  background-color: rgba(0,0,0,0.5);
+}
+:focus {
+  background-color: rgba(0,0,0,0.5);
+}
+`;

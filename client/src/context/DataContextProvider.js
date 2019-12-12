@@ -90,7 +90,9 @@ export default function DataContextProvider(props){
     let newDate = new Date(date)
     return `${newDate.toLocaleTimeString()} ${newDate.toLocaleDateString()}`;
   };
+  function handleFileUpload() {
 
+  }
 
   return (
     <DataContext.Provider
@@ -108,6 +110,7 @@ export default function DataContextProvider(props){
         addNewBlogPost,
         editYogaClass,
         editBlogPost,
+        handleFileUpload,
 
       }}>
       {props.children}
