@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import EditBlogForm from './EditBlogForm';
 import Blog from '../pages/Blog';
 
 const EditBlogWrapper = styled.div`
@@ -24,7 +25,7 @@ const BlogPagePreviewHeading = styled.div`
   background-color: ${props => props.theme.primary2}
   padding: 10px;
 `;
-const EditBlogForm = styled.div`
+const EditBlogFormWrapper = styled.div`
   width: 90%;
   margin: 0 auto 0 auto;
   padding: 10px;
@@ -33,10 +34,10 @@ const EditBlogForm = styled.div`
 function EditBlog(props) {
   return(
     <EditBlogWrapper>
-      Edit Blog Page
-      <EditBlogForm>
-        Edit Blog Form Goes Here
-      </EditBlogForm>
+      <EditBlogFormWrapper>
+        <h2>Add New Blog Post</h2>
+        <EditBlogForm type="new" />
+      </EditBlogFormWrapper>
       <BlogPagePreview>
         <BlogPagePreviewHeading>
           <h2>Preview:</h2>

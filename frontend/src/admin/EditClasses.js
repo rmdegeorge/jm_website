@@ -1,9 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
+import EditClassForm from './EditClassForm'
 import Classes from '../pages/Classes';
 
-const EditClassesWrapper = styled.div`
+const EditClassWrapper = styled.div`
   display: flex;
   flex-direction: column;
 
@@ -24,7 +25,7 @@ const ClassesPagePreviewHeading = styled.div`
   background-color: ${props => props.theme.primary2}
   padding: 10px;
 `;
-const EditClassesForm = styled.div`
+const EditClassFormWrapper = styled.div`
   width: 90%;
   margin: 0 auto 0 auto;
   padding: 10px;
@@ -32,18 +33,18 @@ const EditClassesForm = styled.div`
 `;
 function EditClasses(props) {
   return(
-    <EditClassesWrapper>
-      Edit Classes Page
-      <EditClassesForm>
-        Edit Classes Form Goes Here
-      </EditClassesForm>
+    <EditClassWrapper>
+      <EditClassFormWrapper>
+        <h2>Add New Class</h2>
+        <EditClassForm type="new" />
+      </EditClassFormWrapper>
       <ClassesPagePreview>
         <ClassesPagePreviewHeading>
           <h2>Preview:</h2>
         </ClassesPagePreviewHeading>
         <Classes />
       </ClassesPagePreview>
-    </EditClassesWrapper>
+    </EditClassWrapper>
   );
 };
 
