@@ -16,6 +16,7 @@ import Footer from './components/Footer';
 import Admin from './Admin';
 import EditClasses from './admin/EditClasses';
 import EditBlog from './admin/EditBlog';
+import ProtectedRoute from './admin/ProtectedRoute';
 
 const AppContainer = styled.div`
 
@@ -37,8 +38,8 @@ const App = (props) => {
           <Route path="/Blog" component={Blog} />
           <Route path="/Store" component={Store} />
           <Route exact path="/admin" component={Admin} />
-          <Route path="/admin/EditClasses" component={EditClasses} />
-          <Route path="/admin/EditBlog" component={EditBlog} />
+          <ProtectedRoute path="/admin/EditClasses" component={EditClasses} />
+          <ProtectedRoute path="/admin/EditBlog" component={EditBlog} />
         </Switch>
         <Footer />
       </AppContainer>

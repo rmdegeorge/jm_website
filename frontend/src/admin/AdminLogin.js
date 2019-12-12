@@ -1,12 +1,36 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import styled from 'styled-components';
 
-const AdminLoginWrapper = styled.div``;
+import {DataContext} from '../context/DataContextProvider';
+import AdminLoginForm from './AdminLoginForm';
+
+const AdminLoginWrapper = styled.div`
+
+`;
+const WelcomeMessage = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 100 0 400px 0;
+`;
+
 
 function AdminLogin(props) {
+  const {token,user} = useContext(DataContext);
+  console.log(user)
   return(
     <AdminLoginWrapper>
-      Admin Login Page
+      {
+        token
+        ?
+        <WelcomeMessage>
+          <h2>Welcome!</h2>
+          <p>You are currently logged in as {user.username}</p>
+        </WelcomeMessage>
+        :
+        <AdminLoginForm />
+      }
+
     </AdminLoginWrapper>
   );
 };
