@@ -77,9 +77,9 @@ const Navbar = (props) => {
         ?
         // if admin and logged in
         <LinkWrapper>
-          <NavLink to="/admin" onClick={logout}>Logout</NavLink>
           <NavLink to="/admin/EditClasses"> Edit Classes</NavLink>
           <NavLink to="/admin/EditBlog">Edit Blog</NavLink>
+          <NavLink to="/admin" onClick={logout}>Logout</NavLink>
         </LinkWrapper>
         :
         // if admin and not logged in
