@@ -38,8 +38,6 @@ const App = (props) => {
           <Route path="/Blog" component={Blog} />
           <Route path="/Store" component={Store} />
           <Route exact path="/admin" component={Admin} />
-          <ProtectedRoute path="/admin/EditClasses" component={EditClasses} />
-          <ProtectedRoute path="/admin/EditBlog" component={EditBlog} />
         </Switch>
         <Footer />
       </AppContainer>
