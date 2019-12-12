@@ -11,11 +11,6 @@ adminAxios.interceptors.request.use((config) => {
 export const DataContext = React.createContext();
 
 export default function DataContextProvider(props){
-  // localStorage.removeItem("user")
-  // localStorage.removeItem("token")
-  // console.log('localStorage')
-  // console.log(localStorage)
-  
   // State
   const [yogaClasses, setYogaClasses] = useState([]);
   const [blogPosts, setBlogPosts] = useState([]);
