@@ -1,6 +1,6 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import {Route, Redirect} from 'react-router-dom';
-import {DataContext} from '../DataContextProvider';
+import {DataContext} from '../context/DataContextProvider';
 
 function ProtectedRoute(props) {
   const {token} = useContext(DataContext)
@@ -11,8 +11,8 @@ function ProtectedRoute(props) {
       ?
       <Route {...rest} component={Component} />
       :
-      <Redirect to="/login" />
+      <Redirect to="/admin" />
   );
 };
 
-export default withContext(ProtectedRoute);
+export default ProtectedRoute;
