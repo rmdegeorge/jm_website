@@ -2,6 +2,8 @@ import React, {useContext, useEffect} from 'react';
 import styled from 'styled-components';
 import {DataContext} from '../context/DataContextProvider';
 
+import EditBlogForm from '../admin/EditBlogForm';
+
 const BlogWrapper = styled.div`
   width: 90%;
   margin: 0 auto 0 auto;
@@ -10,9 +12,13 @@ const BlogPostCard = styled.div``;
 const BlogPostTitle = styled.h2``;
 const BlogPostDate = styled.h4``;
 const BlogPostBody = styled.p``;
+const EditFormWrapper = styled.div`
+  width: 80%;
+  margin: 0 auto 0 auto;
+`;
 
 const Blog = (props) => {
-  const {blogPosts, getAllBlogPosts, formatDate} = useContext(DataContext);
+  const {blogPosts, getAllBlogPosts, formatDate, token} = useContext(DataContext);
 
   useEffect(() => {
     getAllBlogPosts();
@@ -36,6 +42,16 @@ const Blog = (props) => {
 
   return (
     <BlogWrapper>
+      {
+        token
+        ?
+        <EditFormWrapper>
+          <EditBlogForm type="add" />
+        </EditFormWrapper>
+        :
+        null
+      }
+      
       {displayBlogPosts}
 
       <div>
