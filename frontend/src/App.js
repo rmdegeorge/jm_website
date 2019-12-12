@@ -14,8 +14,6 @@ import Store from './pages/Store';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Admin from './Admin';
-import EditClasses from './admin/EditClasses';
-import EditBlog from './admin/EditBlog';
 import ProtectedRoute from './admin/ProtectedRoute';
 
 const AppContainer = styled.div`

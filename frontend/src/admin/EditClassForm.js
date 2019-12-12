@@ -17,18 +17,19 @@ const BodyInput = styled.textarea`
 `;
 
 export default function EditClassForm(props) {
-  const {login} = useContext(DataContext);
+  const {addNewYogaClass, editYogaClass} = useContext(DataContext);
   const {value: name, bind: bindName} = useInput('');
   const {value: body, bind: bindBody} = useInput('');
-  const inputs = {name, body};
+  const {value: tags, bind: bindTags} = useInput('');
+  const inputs = {name, body, tags};
 
   function handleSubmit(e) {
     e.preventDefault();
     if (props.type === "new") {
-      // add function
+      addNewYogaClass(name, body, tags);
     } else {
-      // save function
-    }
+      editYogaClass();
+    };
   };
 
   return (
@@ -37,12 +38,14 @@ export default function EditClassForm(props) {
     <FormWrapper onSubmit={handleSubmit}>
       <TextInput name="name" type="text" placeholder="Name" {...bindName} required />
       <TextArea name="body" placeholder="Body" {...bindBody} required />
+      <TextInput name="tags" placeholder="Tags" {...bindTags} />
       <Submit>Add</Submit>
     </FormWrapper>
     :
     <FormWrapper onSubmit={handleSubmit}>
       <TextInput name="name" type="text" placeholder="Name" {...bindName} required />
       <TextArea name="body" placeholder="body" {...bindBody} required />
+      <TextInput name="tags" placeholder="Tags" {...bindTags} />
       <Submit>Save</Submit>
     </FormWrapper>
   );
