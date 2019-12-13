@@ -57,7 +57,7 @@ export default function FileUploader(props) {
       <label>{fileName}</label>
       <input type='file' onChange={onChange}/>
       <Button onClick={handleFileUpload}>Upload</Button>
-      <ProgressBar percentage={uploadPercent} />
+      {uploadPercent === 0 ? null : <ProgressBar percentage={uploadPercent} />}
       {uploadedFile ? <UploadedFileDisplay src={uploadedFile.filePath} /> : null}
     </FileUploaderWrapper>
   );
