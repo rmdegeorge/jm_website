@@ -54,6 +54,7 @@ const Navbar = (props) => {
         <NavLink to="/About">About</NavLink>
         <NavLink to="/Classes">Classes</NavLink>
         <NavLink to="/CorporateWellness">Corporate Wellness</NavLink>
+        <NavLink to="/Instagram">Instagram</NavLink>
         <NavLink to="/Blog">Blog</NavLink>
         <NavLink to="/Store">Store</NavLink>
         <NavLink to="/Contact">Contact</NavLink>
