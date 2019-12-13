@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import {useInput} from '../hooks/customHooks';
 import {DataContext} from '../context/DataContextProvider';
 
+import FileUploader from '../components/FileUploader';
 import {Form, TextInput, TextArea, Submit} from '../components/styledFormComponents/StyledFormComponents';
 
 const FormWrapper = styled(Form)`
@@ -29,20 +30,12 @@ export default function EditBlogForm(props) {
   };
 
   return (
-    props.type === "new"
-    ?
     <FormWrapper onSubmit={handleSubmit}>
       <TextInput name="title" type="text" placeholder="Title" {...bindTitle} required />
       <TextArea name="body" placeholder="Body" {...bindBody} required />
       <TextInput name="tags" type="text" placeholder="Tags" {...bindTags} />
-      <Submit>Add</Submit>
-    </FormWrapper>
-    :
-    <FormWrapper onSubmit={handleSubmit}>
-      <TextInput name="title" type="text" placeholder="Title" {...bindTitle} required />
-      <TextArea name="body" placeholder="body" {...bindBody} required />
-      <TextInput name="tags" type="text" placeholder="Tags" {...bindTags} />
-      <Submit>Save</Submit>
+      <FileUploader />
+      {props.type === "new" ? <Submit>Add</Submit> : <Submit>Save</Submit>}
     </FormWrapper>
   );
 };

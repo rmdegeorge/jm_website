@@ -16,6 +16,13 @@ const EditFormWrapper = styled.div`
   width: 80%;
   margin: 0 auto 0 auto;
 `;
+const Tag = styled.div`
+  padding: 5px;
+  margin: 0 2px 0 2px;
+  border-radius: 5px;
+  background-color: #000000;
+  color: #ffffff;
+`;
 
 const Blog = (props) => {
   const {blogPosts, getAllBlogPosts, formatDate, token} = useContext(DataContext);
@@ -37,6 +44,9 @@ const Blog = (props) => {
           {paragraph}
         </BlogPostBody>
       )}
+      {blogPost.tags.map((tag, i) =>
+        <Tag key={blogPost._id + "tag" + i}>{tag}</Tag>
+      )}
     </BlogPostCard>
   )
 
@@ -51,7 +61,7 @@ const Blog = (props) => {
         :
         null
       }
-      
+
       {displayBlogPosts}
 
       <div>
