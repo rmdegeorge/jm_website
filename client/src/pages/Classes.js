@@ -1,6 +1,7 @@
 import React, {useContext, useEffect} from 'react';
 import styled from 'styled-components';
 import {DataContext} from '../context/DataContextProvider';
+import ClassCard from '../components/ClassCard';
 import EditClassForm from '../admin/EditClassForm';
 
 const ClassesWrapper = styled.div`
@@ -9,9 +10,6 @@ const ClassesWrapper = styled.div`
 `;
 const PageTitle = styled.h1``;
 const PageSubtitle = styled.h2``;
-const ClassCard = styled.div``;
-const ClassTitle = styled.h3``;
-const ClassDescription = styled.p``;
 const EditFormWrapper = styled.div`
   width: 80%;
   margin: 0 auto 0 auto;
@@ -26,17 +24,8 @@ const Classes = (props) => {
     getAllYogaClasses();
   }, []);
   const displayYogaClasses = yogaClasses.map((yogaClass) =>
-    <ClassCard key={yogaClass._id}>
-      <ClassTitle>
-        {yogaClass.name}
-      </ClassTitle>
-      {yogaClass.body.map((paragraph, i) =>
-        <ClassDescription key={yogaClass._id + "paragraph" + i}>
-          {paragraph}
-        </ClassDescription>
-      )}
-
-    </ClassCard>
+    <ClassCard key={yogaClass._id} classInfo={yogaClass} />
+      
   );
 
   return (
