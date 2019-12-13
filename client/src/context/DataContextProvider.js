@@ -49,9 +49,9 @@ export default function DataContextProvider(props){
         console.error(err);
       });
   };
-  function addNewYogaClass(name, body, tags) {
-    const bodyArray = body.split('\n')
-    const newYogaClass = {name, body: bodyArray, tags}
+  function addNewYogaClass(name, body) {
+    const bodyArray = body.split('\n');
+    const newYogaClass = {name, body: bodyArray};
     adminAxios.post("/admin/yogaclass", newYogaClass)
       .then((res) => {
         getAllYogaClasses();
@@ -73,8 +73,9 @@ export default function DataContextProvider(props){
       });
   };
   function addNewBlogPost(title, body, tags) {
+    const tagsArray = tags.split(', ');
     const bodyArray = body.split('\n')
-    const newBlogPost = {title, body: bodyArray, tags};
+    const newBlogPost = {title, body: bodyArray, tags: tagsArray};
     adminAxios.post("/admin/blogpost", newBlogPost)
       .then((res) => {
         getAllBlogPosts();

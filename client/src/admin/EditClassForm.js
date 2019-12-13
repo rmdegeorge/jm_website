@@ -22,15 +22,14 @@ export default function EditClassForm(props) {
   const {addNewYogaClass, editYogaClass} = useContext(DataContext);
   const {value: name, bind: bindName} = useInput('');
   const {value: body, bind: bindBody} = useInput('');
-  const {value: tags, bind: bindTags} = useInput('');
-  const inputs = {name, body, tags};
+  const inputs = {name, body};
 
   const [selectedFile, setSelectedFile] = useState(null);
 
   function handleSubmit(e) {
     e.preventDefault();
     if (props.type === "new") {
-      addNewYogaClass(name, body, tags);
+      addNewYogaClass(name, body);
     } else {
       editYogaClass();
     };
@@ -42,7 +41,6 @@ export default function EditClassForm(props) {
     <FormWrapper onSubmit={handleSubmit}>
       <TextInput name="name" type="text" placeholder="Name" {...bindName} required />
       <TextArea name="body" placeholder="Body" {...bindBody} required />
-      <TextInput name="tags" placeholder="Tags" {...bindTags} />
       <FileUploader />
       {props.type === "new" ? <Submit type="submit">Add</Submit> : <Submit>Save</Submit>}
     </FormWrapper>
