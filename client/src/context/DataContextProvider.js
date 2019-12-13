@@ -64,7 +64,18 @@ export default function DataContextProvider(props) {
         console.error(err);
       });
   }
-  function editYogaClass() {}
+  function editYogaClass(_id, name, body) {
+    const bodyArray = body.split("\n");
+    const updatedClass = { name, body: bodyArray };
+    adminAxios
+      .put(`/admin/yogaclass/${_id}`, updatedClass)
+      .then(res => {
+        getAllYogaClasses();
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }
   function getAllBlogPosts() {
     axios
       .get("/public/blogpost")
@@ -88,7 +99,19 @@ export default function DataContextProvider(props) {
         console.error(err);
       });
   }
-  function editBlogPost() {}
+  function editBlogPost(_id, title, body, tags) {
+    const tagsArray = tags.split(", ");
+    const bodyArray = body.split("\n");
+    const updatedBlogPost = { title, body: bodyArray, tags: tagsArray };
+    adminAxios
+      .put(`/admin/blogpost/${_id}`, updatedBlogPost)
+      .then(res => {
+        getAllBlogPosts();
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }
   function formatDate(date) {
     let newDate = new Date(date);
     return `${newDate.toLocaleTimeString()} ${newDate.toLocaleDateString()}`;

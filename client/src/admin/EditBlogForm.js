@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import styled from "styled-components";
 import { useInput } from "../hooks/customHooks";
 import { DataContext } from "../context/DataContextProvider";
@@ -20,17 +20,27 @@ const FormWrapper = styled(Form)`
 
 export default function EditBlogForm(props) {
   const { addNewBlogPost, editBlogPost } = useContext(DataContext);
-  const { value: title, bind: bindTitle } = useInput("");
-  const { value: body, bind: bindBody } = useInput("");
-  const { value: tags, bind: bindTags } = useInput("");
+
+  const { value: title, bind: bindTitle, setValue: setTitle } = useInput("");
+  const { value: body, bind: bindBody, setValue: setBody } = useInput("");
+  const { value: tags, bind: bindTags, setValue: setTags } = useInput("");
   const inputs = { title, body, tags };
+
+  useEffect(() => {
+    if (props.type === "edit") {
+      setTitle(props.postInfo.title);
+      setBody(props.postInfo.body.join("\n"));
+      setTags(props.postInfo.tags.join(", "));
+    }
+  }, []);
 
   function handleSubmit(e) {
     e.preventDefault();
     if (props.type === "new") {
       addNewBlogPost(title, body, tags);
     } else {
-      editBlogPost();
+      editBlogPost(props.postInfo._id, title, body, tags);
+      props.toggleEdit();
     }
   }
 

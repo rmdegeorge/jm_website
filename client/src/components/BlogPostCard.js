@@ -34,13 +34,16 @@ export default function BlogPostCard(props) {
     <BlogPostTag key={`${_id}tag${i}`}>{tag}</BlogPostTag>
   ));
   const toggleEdit = () => {
-    console.log(setEditToggled);
     setEditToggled(prevEditToggled => !prevEditToggled);
   };
 
   return editToggled ? (
     <EditFormWrapper>
-      <EditBlogForm type="edit" currentInfo={props.postInfo} />
+      <EditBlogForm
+        type="edit"
+        postInfo={props.postInfo}
+        toggleEdit={toggleEdit}
+      />
     </EditFormWrapper>
   ) : (
     <BlogPostCardWrapper>

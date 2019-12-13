@@ -1,4 +1,4 @@
-import {useState} from 'react';
+import { useState } from "react";
 
 // export const useContactForm = (callback) => {
 //   const [inputs, setInputs] = useState({});
@@ -30,7 +30,7 @@ export const useInput = initialValue => {
     reset: () => setValue(""),
     bind: {
       value,
-      onChange: (event) => {
+      onChange: event => {
         setValue(event.target.value);
       }
     }
