@@ -1,4 +1,4 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { useInput } from "../hooks/customHooks";
 import { DataContext } from "../context/DataContextProvider";
@@ -19,12 +19,20 @@ const FormWrapper = styled(Form)`
 `;
 
 export default function EditBlogForm(props) {
-  const { addNewBlogPost, editBlogPost } = useContext(DataContext);
+  const {
+    addNewBlogPost,
+    editBlogPost,
+    deleteBlogPost,
+    uploadedFile,
+    setUploadedFile
+  } = useContext(DataContext);
 
   const { value: title, bind: bindTitle, setValue: setTitle } = useInput("");
   const { value: body, bind: bindBody, setValue: setBody } = useInput("");
   const { value: tags, bind: bindTags, setValue: setTags } = useInput("");
   const inputs = { title, body, tags };
+
+  const [selectedFile, setSelectedFile] = useState(null);
 
   useEffect(() => {
     if (props.type === "edit") {
@@ -34,14 +42,21 @@ export default function EditBlogForm(props) {
     }
   }, []);
 
+  const imgSrc = uploadedFile.filePath;
+
   function handleSubmit(e) {
     e.preventDefault();
-    if (props.type === "new") {
-      addNewBlogPost(title, body, tags);
+    if (props.type === "add") {
+      addNewBlogPost(title, body, tags, imgSrc);
     } else {
-      editBlogPost(props.postInfo._id, title, body, tags);
+      editBlogPost(props.postInfo._id, title, body, tags, imgSrc);
       props.toggleEdit();
     }
+    setUploadedFile("");
+    setSelectedFile("");
+    setTitle("");
+    setBody("");
+    setTags("");
   }
 
   return (

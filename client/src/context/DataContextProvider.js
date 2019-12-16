@@ -126,10 +126,10 @@ export default function DataContextProvider(props) {
         console.error(err);
       });
   }
-  function addNewBlogPost(title, body, tags) {
+  function addNewBlogPost(title, body, tags, imgSrc) {
     const tagsArray = tags.split(", ");
     const bodyArray = body.split("\n");
-    const newBlogPost = { title, body: bodyArray, tags: tagsArray };
+    const newBlogPost = { title, body: bodyArray, tags: tagsArray, imgSrc };
     adminAxios
       .post("/admin/blogpost", newBlogPost)
       .then(res => {
@@ -139,12 +139,25 @@ export default function DataContextProvider(props) {
         console.error(err);
       });
   }
-  function editBlogPost(_id, title, body, tags) {
+  function editBlogPost(_id, title, body, tags, imgSrc) {
     const tagsArray = tags.split(", ");
     const bodyArray = body.split("\n");
-    const updatedBlogPost = { title, body: bodyArray, tags: tagsArray };
+    let updatedBlogPost = {};
+    imgSrc
+      ? (updatedBlogPost = { title, body: bodyArray, tags: tagsArray, imgSrc })
+      : (updatedBlogPost = { title, body: bodyArray, tags: tagsArray });
     adminAxios
       .put(`/admin/blogpost/${_id}`, updatedBlogPost)
+      .then(res => {
+        getAllBlogPosts();
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }
+  function deleteBlogPost(_id) {
+    adminAxios
+      .delete(`/admin/blogpost/${_id}`)
       .then(res => {
         getAllBlogPosts();
       })
@@ -171,11 +184,13 @@ export default function DataContextProvider(props) {
         logout,
         addNewYogaClass,
         addNewBlogPost,
+        deleteBlogPost,
         editYogaClass,
         deleteYogaClass,
         editBlogPost,
         uploadFile,
         uploadedFile,
+        setUploadedFile,
         uploadPercent
       }}
     >
