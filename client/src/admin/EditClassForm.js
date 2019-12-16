@@ -23,9 +23,12 @@ const TitleInput = styled.input``;
 const BodyInput = styled.textarea``;
 
 export default function EditClassForm(props) {
-  const { addNewYogaClass, editYogaClass, uploadedFile } = useContext(
-    DataContext
-  );
+  const {
+    addNewYogaClass,
+    editYogaClass,
+    deleteYogaClass,
+    uploadedFile
+  } = useContext(DataContext);
   const { value: name, bind: bindName, setValue: setName } = useInput("");
   const { value: body, bind: bindBody, setValue: setBody } = useInput("");
   const inputs = { name, body };

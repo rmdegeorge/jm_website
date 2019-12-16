@@ -8,14 +8,20 @@ import DeleteConfirm from "../components/DeleteConfirm";
 
 const ClassCardWrapper = styled.div`
   display: flex;
+  padding: 16px 0 8px 0;
 `;
 const ClassTextWrapper = styled.div`
+  width: 66%;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  padding: 5%;
 `;
 const ClassName = styled.h3``;
 const ClassDescription = styled.p``;
-const ClassImg = styled.img``;
+const ClassImg = styled.img`
+  width: 33%;
+`;
 const EditButtonsWrapper = styled.div`
   display: flex;
 `;

@@ -93,9 +93,6 @@ export default function DataContextProvider(props) {
   }
   function editYogaClass(_id, name, body, imgSrc) {
     const bodyArray = body.split("\n");
-    imgSrc
-      ? console.log("defined ", imgSrc)
-      : console.log("not defined ", imgSrc);
     let updatedClass = {};
     imgSrc
       ? (updatedClass = { name, body: bodyArray, imgSrc })
