@@ -1,10 +1,10 @@
-import React, {useContext} from 'react';
-import styled from 'styled-components';
-import {Link, withRouter} from 'react-router-dom';
-import {DataContext} from '../context/DataContextProvider';
+import React, { useContext } from "react";
+import styled from "styled-components";
+import { Link, withRouter } from "react-router-dom";
+import { DataContext } from "../context/DataContextProvider";
 
-import WordmarkClay from '../assets/JM_wordmark_clay.png';
-import {NavLink} from './styledComponents/CustomStyledComponents.js'
+import WordmarkClay from "../assets/JM_wordmark_clay.png";
+import { NavLink } from "./styledComponents/CustomStyledComponents.js";
 
 const NavbarContainer = styled.div`
   display: flex;
@@ -24,6 +24,11 @@ const Header = styled.div`
   border-bottom: 1px solid grey;
   text-align: center;
 `;
+const HeaderLogoLink = styled(NavLink)`
+  :hover {
+    border: none;
+  }
+`;
 const HeaderLogo = styled.img`
   object-fit: cover;
   object-position: 0 -50px;
@@ -39,35 +44,30 @@ const LinkWrapper = styled.div`
   align-items: center;
 `;
 
-
-const Navbar = (props) => {
-  const {token, logout} = useContext(DataContext);
-  const pathCheckPattern = new RegExp('^/admin', 'i');
+const Navbar = props => {
+  const { token, logout } = useContext(DataContext);
+  const pathCheckPattern = new RegExp("^/admin", "i");
   return (
     <NavbarContainer>
       <Header>
-        <NavLink to="/">
+        <HeaderLogoLink to="/">
           <HeaderLogo src={WordmarkClay} alt="Jasper Moon Wellness" />
-        </NavLink>
+        </HeaderLogoLink>
       </Header>
       <LinkWrapper>
-        <NavLink to="/About">About</NavLink>
         <NavLink to="/Classes">Classes</NavLink>
         <NavLink to="/CorporateWellness">Corporate Wellness</NavLink>
-        <NavLink to="/Instagram">Instagram</NavLink>
         <NavLink to="/Blog">Blog</NavLink>
         <NavLink to="/Store">Store</NavLink>
         <NavLink to="/Contact">Contact</NavLink>
-        {
-          token
-          ?
-          <NavLink to="/" onClick={logout}>Logout</NavLink>
-          :
-          null
-        }
+        {token ? (
+          <NavLink to="/" onClick={logout}>
+            Logout
+          </NavLink>
+        ) : null}
       </LinkWrapper>
     </NavbarContainer>
-  )
-}
+  );
+};
 
 export default withRouter(Navbar);
