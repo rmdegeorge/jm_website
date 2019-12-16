@@ -4,13 +4,7 @@ import { Link, withRouter } from "react-router-dom";
 import { DataContext } from "../context/DataContextProvider";
 
 import WordmarkClay from "../assets/JM_wordmark_clay.png";
-import {
-  NavLink,
-  FacebookIcon,
-  InstagramIcon
-} from "./styledComponents/CustomStyledComponents.js";
-import IGIconSVG from "../assets/instagram-icon.svg";
-import FBIconSVG from "../assets/facebook-icon.svg";
+import { NavLink } from "./styledComponents/CustomStyledComponents.js";
 
 const NavbarContainer = styled.div`
   display: flex;
@@ -29,6 +23,11 @@ const Header = styled.div`
   width: 90%;
   border-bottom: 1px solid grey;
   text-align: center;
+`;
+const HeaderLogoLink = styled(NavLink)`
+  :hover {
+    border: none;
+  }
 `;
 const HeaderLogo = styled.img`
   object-fit: cover;
@@ -51,12 +50,11 @@ const Navbar = props => {
   return (
     <NavbarContainer>
       <Header>
-        <NavLink to="/">
+        <HeaderLogoLink to="/">
           <HeaderLogo src={WordmarkClay} alt="Jasper Moon Wellness" />
-        </NavLink>
+        </HeaderLogoLink>
       </Header>
       <LinkWrapper>
-        <NavLink to="/About">About</NavLink>
         <NavLink to="/Classes">Classes</NavLink>
         <NavLink to="/CorporateWellness">Corporate Wellness</NavLink>
         <NavLink to="/Blog">Blog</NavLink>
@@ -67,12 +65,6 @@ const Navbar = props => {
             Logout
           </NavLink>
         ) : null}
-        <a href="https://facebook.com/jaspermoonwellness">
-          <FacebookIcon src={FBIconSVG} />
-        </a>
-        <a href="https://instagram.com/jaspermoonwellness/">
-          <InstagramIcon src={IGIconSVG} />
-        </a>
       </LinkWrapper>
     </NavbarContainer>
   );

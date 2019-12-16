@@ -12,12 +12,3 @@ export const NavLink = styled(Link)`
     border-top: 1px solid rgba(0, 0, 0, 0);
   }
 `;
-
-export const FacebookIcon = styled.img`
-  height: 1.2em;
-  width: auto;
-`;
-export const InstagramIcon = styled.img`
-  height: 1.2em;
-  width: auto;
-`;
