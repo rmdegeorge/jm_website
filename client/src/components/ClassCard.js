@@ -4,26 +4,43 @@ import styled from "styled-components";
 import { DataContext } from "../context/DataContextProvider";
 import EditClassForm from "../admin/EditClassForm";
 import { Button } from "../components/styledFormComponents/StyledFormComponents";
+import DeleteConfirm from "../components/DeleteConfirm";
 
-const ClassCardWrapper = styled.div``;
+const ClassCardWrapper = styled.div`
+  display: flex;
+`;
+const ClassTextWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
 const ClassName = styled.h3``;
 const ClassDescription = styled.p``;
 const ClassImg = styled.img``;
+const EditButtonsWrapper = styled.div`
+  display: flex;
+`;
 const EditFormWrapper = styled.div`
   width: 60%;
   margin: auto;
 `;
 
 export default function ClassCard(props) {
-  const { token } = useContext(DataContext);
+  const { token, deleteYogaClass } = useContext(DataContext);
   const [editToggled, setEditToggled] = useState(false);
-  const { name, body, _id } = props.classInfo;
+  const [confirmDeleteToggled, setConfirmDeleteToggled] = useState(false);
+  const { name, body, _id, imgSrc } = props.classInfo;
   const displayBody = body.map((paragraph, i) => (
     <ClassDescription key={`${_id}paragraph${i}`}>{paragraph}</ClassDescription>
   ));
   const toggleEdit = () => {
     setEditToggled(prevEditToggled => !prevEditToggled);
   };
+  const toggleConfirmDelete = () => {
+    setConfirmDeleteToggled(
+      prevConfirmDeleteToggled => !prevConfirmDeleteToggled
+    );
+  };
+  const handleDelete = () => {};
   return editToggled ? (
     <EditFormWrapper>
       <EditClassForm
@@ -34,9 +51,24 @@ export default function ClassCard(props) {
     </EditFormWrapper>
   ) : (
     <ClassCardWrapper>
-      <ClassName>{name}</ClassName>
-      {displayBody}
-      {token ? <Button onClick={toggleEdit}>Edit</Button> : null}
+      <ClassTextWrapper>
+        <ClassName>{name}</ClassName>
+        {displayBody}
+        {token ? (
+          confirmDeleteToggled ? (
+            <DeleteConfirm
+              deleteYogaClass={() => deleteYogaClass(props.classInfo._id)}
+              toggleConfirmDelete={toggleConfirmDelete}
+            />
+          ) : (
+            <EditButtonsWrapper>
+              <Button onClick={toggleEdit}>Edit</Button>
+              <Button onClick={toggleConfirmDelete}>Delete</Button>
+            </EditButtonsWrapper>
+          )
+        ) : null}
+      </ClassTextWrapper>
+      <ClassImg src={imgSrc} />
     </ClassCardWrapper>
   );
 }
