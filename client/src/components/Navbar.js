@@ -1,10 +1,16 @@
-import React, {useContext} from 'react';
-import styled from 'styled-components';
-import {Link, withRouter} from 'react-router-dom';
-import {DataContext} from '../context/DataContextProvider';
+import React, { useContext } from "react";
+import styled from "styled-components";
+import { Link, withRouter } from "react-router-dom";
+import { DataContext } from "../context/DataContextProvider";
 
-import WordmarkClay from '../assets/JM_wordmark_clay.png';
-import {NavLink} from './styledComponents/CustomStyledComponents.js'
+import WordmarkClay from "../assets/JM_wordmark_clay.png";
+import {
+  NavLink,
+  FacebookIcon,
+  InstagramIcon
+} from "./styledComponents/CustomStyledComponents.js";
+import IGIconSVG from "../assets/instagram-icon.svg";
+import FBIconSVG from "../assets/facebook-icon.svg";
 
 const NavbarContainer = styled.div`
   display: flex;
@@ -39,10 +45,9 @@ const LinkWrapper = styled.div`
   align-items: center;
 `;
 
-
-const Navbar = (props) => {
-  const {token, logout} = useContext(DataContext);
-  const pathCheckPattern = new RegExp('^/admin', 'i');
+const Navbar = props => {
+  const { token, logout } = useContext(DataContext);
+  const pathCheckPattern = new RegExp("^/admin", "i");
   return (
     <NavbarContainer>
       <Header>
@@ -54,20 +59,23 @@ const Navbar = (props) => {
         <NavLink to="/About">About</NavLink>
         <NavLink to="/Classes">Classes</NavLink>
         <NavLink to="/CorporateWellness">Corporate Wellness</NavLink>
-        <NavLink to="/Instagram">Instagram</NavLink>
         <NavLink to="/Blog">Blog</NavLink>
         <NavLink to="/Store">Store</NavLink>
         <NavLink to="/Contact">Contact</NavLink>
-        {
-          token
-          ?
-          <NavLink to="/" onClick={logout}>Logout</NavLink>
-          :
-          null
-        }
+        {token ? (
+          <NavLink to="/" onClick={logout}>
+            Logout
+          </NavLink>
+        ) : null}
+        <a href="https://facebook.com/jaspermoonwellness">
+          <FacebookIcon src={FBIconSVG} />
+        </a>
+        <a href="https://instagram.com/jaspermoonwellness/">
+          <InstagramIcon src={IGIconSVG} />
+        </a>
       </LinkWrapper>
     </NavbarContainer>
-  )
-}
+  );
+};
 
 export default withRouter(Navbar);
