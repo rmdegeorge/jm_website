@@ -23,7 +23,12 @@ const TitleInput = styled.input``;
 const BodyInput = styled.textarea``;
 
 export default function EditClassForm(props) {
-  const { addNewYogaClass, editYogaClass } = useContext(DataContext);
+  const {
+    addNewYogaClass,
+    editYogaClass,
+    deleteYogaClass,
+    uploadedFile
+  } = useContext(DataContext);
   const { value: name, bind: bindName, setValue: setName } = useInput("");
   const { value: body, bind: bindBody, setValue: setBody } = useInput("");
   const inputs = { name, body };
@@ -37,12 +42,14 @@ export default function EditClassForm(props) {
     }
   }, []);
 
+  const imgSrc = uploadedFile.filePath;
+
   function handleSubmit(e) {
     e.preventDefault();
     if (props.type === "new") {
-      addNewYogaClass(name, body);
+      addNewYogaClass(name, body, imgSrc);
     } else {
-      editYogaClass(props.classInfo._id, name, body);
+      editYogaClass(props.classInfo._id, name, body, imgSrc);
       props.toggleEdit();
     }
   }

@@ -18,6 +18,8 @@ export default function DataContextProvider(props) {
   const [user, setUser] =
     useState(JSON.parse(localStorage.getItem("user"))) || {};
   const [token, setToken] = useState(localStorage.getItem("token") || "");
+  const [uploadedFile, setUploadedFile] = useState({});
+  const [uploadPercent, setUploadPercent] = useState(0);
 
   //functions
   function login(user, password) {
@@ -52,9 +54,34 @@ export default function DataContextProvider(props) {
         console.error(err);
       });
   }
-  function addNewYogaClass(name, body) {
+  async function uploadFile(file, fileName) {
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+      const res = await axios.post("/upload", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data"
+        },
+        onUploadProgress: progressEvent => {
+          setUploadPercent(
+            parseInt(
+              Math.round((progressEvent.loaded * 100) / progressEvent.total)
+            )
+          );
+        }
+      });
+      const { fileName, filePath } = res.data;
+      setUploadedFile({ fileName, filePath });
+    } catch (err) {
+      err.response.status === 500
+        ? console.error(new Error("500: there was an error with the server"))
+        : console.error(err.response.data.msg);
+    }
+  }
+  function addNewYogaClass(name, body, imgSrc) {
     const bodyArray = body.split("\n");
-    const newYogaClass = { name, body: bodyArray };
+    const newYogaClass = { name, body: bodyArray, imgSrc };
     adminAxios
       .post("/admin/yogaclass", newYogaClass)
       .then(res => {
@@ -64,11 +91,24 @@ export default function DataContextProvider(props) {
         console.error(err);
       });
   }
-  function editYogaClass(_id, name, body) {
+  function editYogaClass(_id, name, body, imgSrc) {
     const bodyArray = body.split("\n");
-    const updatedClass = { name, body: bodyArray };
+    let updatedClass = {};
+    imgSrc
+      ? (updatedClass = { name, body: bodyArray, imgSrc })
+      : (updatedClass = { name, body: bodyArray });
     adminAxios
       .put(`/admin/yogaclass/${_id}`, updatedClass)
+      .then(res => {
+        getAllYogaClasses();
+      })
+      .catch(err => {
+        console.error(err);
+      });
+  }
+  function deleteYogaClass(_id) {
+    adminAxios
+      .delete(`/admin/yogaclass/${_id}`)
       .then(res => {
         getAllYogaClasses();
       })
@@ -132,7 +172,11 @@ export default function DataContextProvider(props) {
         addNewYogaClass,
         addNewBlogPost,
         editYogaClass,
-        editBlogPost
+        deleteYogaClass,
+        editBlogPost,
+        uploadFile,
+        uploadedFile,
+        uploadPercent
       }}
     >
       {props.children}
