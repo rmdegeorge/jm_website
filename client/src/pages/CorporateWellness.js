@@ -2,7 +2,10 @@ import React from "react";
 import styled from "styled-components";
 import { NavLink } from "../components/styledComponents/CustomStyledComponents";
 
-const CorporateWellnessContainer = styled.div``;
+const CorporateWellnessContainer = styled.div`
+  width: 90%
+  margin: 25px auto 0 auto;
+`;
 
 const CorporateWellness = props => {
   return (

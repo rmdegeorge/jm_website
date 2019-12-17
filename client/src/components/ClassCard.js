@@ -19,8 +19,19 @@ const ClassTextWrapper = styled.div`
 `;
 const ClassName = styled.h3``;
 const ClassDescription = styled.p``;
+const ImgContainer = styled.div`
+  width: auto;
+  height: auto;
+  max-width: 33%;
+  max-height: 100%
+  overflow: hidden;
+  margin: auto;
+`;
 const ClassImg = styled.img`
-  width: 33%;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
 `;
 const EditButtonsWrapper = styled.div`
   display: flex;
@@ -35,9 +46,13 @@ export default function ClassCard(props) {
   const [editToggled, setEditToggled] = useState(false);
   const [confirmDeleteToggled, setConfirmDeleteToggled] = useState(false);
   const { name, body, _id, imgSrc } = props.classInfo;
-  const displayBody = body.map((paragraph, i) => (
-    <ClassDescription key={`${_id}paragraph${i}`}>{paragraph}</ClassDescription>
-  ));
+  const displayBody = body
+    .filter(n => n)
+    .map((paragraph, i) => (
+      <ClassDescription key={`${_id}paragraph${i}`}>
+        {paragraph}
+      </ClassDescription>
+    ));
   const toggleEdit = () => {
     setEditToggled(prevEditToggled => !prevEditToggled);
   };
@@ -74,7 +89,9 @@ export default function ClassCard(props) {
           )
         ) : null}
       </ClassTextWrapper>
-      <ClassImg src={imgSrc} />
+      <ImgContainer>
+        <ClassImg src={imgSrc} />
+      </ImgContainer>
     </ClassCardWrapper>
   );
 }
