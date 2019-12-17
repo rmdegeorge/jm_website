@@ -80,7 +80,7 @@ export default function DataContextProvider(props) {
     }
   }
   function addNewYogaClass(name, body, imgSrc) {
-    const bodyArray = body.split("\n");
+    const bodyArray = body.split("\n").filter(n => n);
     const newYogaClass = { name, body: bodyArray, imgSrc };
     adminAxios
       .post("/admin/yogaclass", newYogaClass)
@@ -92,7 +92,7 @@ export default function DataContextProvider(props) {
       });
   }
   function editYogaClass(_id, name, body, imgSrc) {
-    const bodyArray = body.split("\n");
+    const bodyArray = body.split("\n").filter(n => n);
     let updatedClass = {};
     imgSrc
       ? (updatedClass = { name, body: bodyArray, imgSrc })
@@ -127,8 +127,8 @@ export default function DataContextProvider(props) {
       });
   }
   function addNewBlogPost(title, body, tags, imgSrc) {
-    const tagsArray = tags.split(", ");
-    const bodyArray = body.split("\n");
+    const tagsArray = tags.split(", ").filter(n => n);
+    const bodyArray = body.split("\n").filter(n => n);
     const newBlogPost = { title, body: bodyArray, tags: tagsArray, imgSrc };
     adminAxios
       .post("/admin/blogpost", newBlogPost)
@@ -140,8 +140,8 @@ export default function DataContextProvider(props) {
       });
   }
   function editBlogPost(_id, title, body, tags, imgSrc) {
-    const tagsArray = tags.split(", ");
-    const bodyArray = body.split("\n");
+    const tagsArray = tags.split(", ").filter(n => n);
+    const bodyArray = body.split("\n").filter(n => n);
     let updatedBlogPost = {};
     imgSrc
       ? (updatedBlogPost = { title, body: bodyArray, tags: tagsArray, imgSrc })
