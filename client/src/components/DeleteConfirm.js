@@ -17,7 +17,7 @@ export default function DeleteConfirm(props) {
         Are you sure you want to delete this item? You cannot undo this action!
       </Message>
       <Button onClick={props.toggleConfirmDelete}>No, Go Back</Button>
-      <Button onClick={props.deleteYogaClass}>Yes, Delete</Button>
+      <Button onClick={props.deleteItem}>Yes, Delete</Button>
     </DeleteConfirmWrapper>
   );
 }

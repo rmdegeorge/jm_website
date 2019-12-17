@@ -46,7 +46,7 @@ export default function ClassCard(props) {
       prevConfirmDeleteToggled => !prevConfirmDeleteToggled
     );
   };
-  const handleDelete = () => {};
+
   return editToggled ? (
     <EditFormWrapper>
       <EditClassForm
@@ -63,7 +63,7 @@ export default function ClassCard(props) {
         {token ? (
           confirmDeleteToggled ? (
             <DeleteConfirm
-              deleteYogaClass={() => deleteYogaClass(props.classInfo._id)}
+              deleteItem={() => deleteYogaClass(props.classInfo._id)}
               toggleConfirmDelete={toggleConfirmDelete}
             />
           ) : (

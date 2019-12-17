@@ -27,7 +27,8 @@ export default function EditClassForm(props) {
     addNewYogaClass,
     editYogaClass,
     deleteYogaClass,
-    uploadedFile
+    uploadedFile,
+    setUploadedFile
   } = useContext(DataContext);
   const { value: name, bind: bindName, setValue: setName } = useInput("");
   const { value: body, bind: bindBody, setValue: setBody } = useInput("");
@@ -52,6 +53,10 @@ export default function EditClassForm(props) {
       editYogaClass(props.classInfo._id, name, body, imgSrc);
       props.toggleEdit();
     }
+    setUploadedFile("");
+    setSelectedFile("");
+    setName("");
+    setBody("");
   }
 
   return (
