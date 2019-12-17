@@ -12,7 +12,9 @@ const BlogPostTitle = styled.h2``;
 const BlogPostDate = styled.h4``;
 const BlogPostBodyWrapper = styled.div``;
 const BlogPostBody = styled.p``;
-const BlogPostTagsWrapper = styled.div``;
+const BlogPostTagsWrapper = styled.div`
+  display: inline-flex;
+`;
 const BlogPostTag = styled.div`
   padding: 5px;
   margin: 0 2px 0 2px;
@@ -33,12 +35,14 @@ export default function BlogPostCard(props) {
   const [editToggled, setEditToggled] = useState(false);
   const [confirmDeleteToggled, setConfirmDeleteToggled] = useState(false);
   const { title, date, body, tags, _id, imgSrc } = props.postInfo;
-  const displayBody = body.map((paragraph, i) => (
-    <BlogPostBody key={`${_id}paragraph${i}`}>{paragraph}</BlogPostBody>
-  ));
-  const displayTags = tags.map((tag, i) => (
-    <BlogPostTag key={`${_id}tag${i}`}>{tag}</BlogPostTag>
-  ));
+  const displayBody = body
+    .filter(n => n)
+    .map((paragraph, i) => (
+      <BlogPostBody key={`${_id}paragraph${i}`}>{paragraph}</BlogPostBody>
+    ));
+  const displayTags = tags
+    .filter(n => n)
+    .map((tag, i) => <BlogPostTag key={`${_id}tag${i}`}>{tag}</BlogPostTag>);
   const toggleEdit = () => {
     setEditToggled(prevEditToggled => !prevEditToggled);
   };
