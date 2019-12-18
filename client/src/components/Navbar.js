@@ -1,9 +1,8 @@
-import React, { useContext } from "react";
+import React from "react";
 import styled from "styled-components";
-import { withRouter } from "react-router-dom";
-import { DataContext } from "../context/DataContextProvider";
 
 import jmlogotypeblk from "../assets/JM_logotype_blk.png";
+import NavbarLinks from "../components/NavbarLinks";
 import { NavLink } from "./styledComponents/CustomStyledComponents.js";
 
 const NavbarContainer = styled.div`
@@ -11,7 +10,7 @@ const NavbarContainer = styled.div`
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  height: auto;
+  height: 130px;
   position: relative;
   background-color: ${props => props.theme.functional1};
   top: 0;
@@ -31,18 +30,8 @@ const HeaderLogo = styled.img`
   width: auto;
   height: auto;
 `;
-const LinkWrapper = styled.div`
-  display: flex;
-  justify-content: space-around;
-  width: 60%;
-  height: 50px;
-  padding: 10px;
-  margin: 0 5% 0 0;
-  align-items: center;
-`;
 
 const Navbar = props => {
-  const { token, logout } = useContext(DataContext);
   return (
     <NavbarContainer>
       <Header>
@@ -50,21 +39,9 @@ const Navbar = props => {
           <HeaderLogo src={jmlogotypeblk} alt="Jasper Moon Wellness" />
         </HeaderLogoLink>
       </Header>
-      <LinkWrapper>
-        <NavLink to="/About">About</NavLink>
-        <NavLink to="/Classes">Classes</NavLink>
-        <NavLink to="/CorporateWellness">Corporate Wellness</NavLink>
-        <NavLink to="/Blog">Blog</NavLink>
-        {/* <NavLink to="/Store">Store</NavLink> */}
-        <NavLink to="/Contact">Contact</NavLink>
-        {token ? (
-          <NavLink to="/" onClick={logout}>
-            Logout
-          </NavLink>
-        ) : null}
-      </LinkWrapper>
+      <NavbarLinks />
     </NavbarContainer>
   );
 };
 
-export default withRouter(Navbar);
+export default Navbar;
