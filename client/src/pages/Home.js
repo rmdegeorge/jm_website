@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 
 import jmwordmarkblk from "../assets/JM_wordmark_blk.png";
-import sunriseimg from "../assets/Sunrise.png";
+import sunriseimg from "../assets/Sunrise.jpeg";
 
 const HomeWrapper = styled.div`
   display: flex;
