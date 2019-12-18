@@ -1,5 +1,5 @@
 const express = require("express");
-const YogaClass = require("../models/YogaClassModel");
+const YogaClass = require("../models/yogaClassModel");
 const yogaClassRouter = express.Router();
 
 yogaClassRouter
