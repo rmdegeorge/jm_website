@@ -11,17 +11,18 @@ adminAxios.interceptors.request.use(config => {
 export const DataContext = React.createContext();
 
 export default function DataContextProvider(props) {
-  // State
   const [yogaClasses, setYogaClasses] = useState([]);
   const [blogPosts, setBlogPosts] = useState([]);
-  // set token state to token/user from local storage. if not set token/user state to empty string
   const [user, setUser] =
     useState(JSON.parse(localStorage.getItem("user"))) || {};
   const [token, setToken] = useState(localStorage.getItem("token") || "");
   const [uploadedFile, setUploadedFile] = useState({});
   const [uploadPercent, setUploadPercent] = useState(0);
+  const [navMenuOpen, setNavMenuOpen] = useState(false);
 
-  //functions
+  function toggleNavMenu() {
+    setNavMenuOpen(prevNavMenuOpen => !prevNavMenuOpen);
+  }
   function login(user, password) {
     const credentials = { username: user, password: password };
     return adminAxios
@@ -191,7 +192,10 @@ export default function DataContextProvider(props) {
         uploadFile,
         uploadedFile,
         setUploadedFile,
-        uploadPercent
+        uploadPercent,
+        navMenuOpen,
+        setNavMenuOpen,
+        toggleNavMenu
       }}
     >
       {props.children}
