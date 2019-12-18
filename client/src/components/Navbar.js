@@ -3,14 +3,13 @@ import styled from "styled-components";
 import { withRouter } from "react-router-dom";
 import { DataContext } from "../context/DataContextProvider";
 
-import WordmarkClay from "../assets/JM_wordmark_clay.png";
+import jmlogotypeblk from "../assets/JM_logotype_blk.png";
 import { NavLink } from "./styledComponents/CustomStyledComponents.js";
 
 const NavbarContainer = styled.div`
   display: flex;
-  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   width: 100%;
   height: auto;
   position: relative;
@@ -20,9 +19,7 @@ const NavbarContainer = styled.div`
   right: 0;
 `;
 const Header = styled.div`
-  width: 90%;
-  border-bottom: 1px solid grey;
-  text-align: center;
+  margin: 24px 0 24px 5%;
 `;
 const HeaderLogoLink = styled(NavLink)`
   :hover {
@@ -30,17 +27,17 @@ const HeaderLogoLink = styled(NavLink)`
   }
 `;
 const HeaderLogo = styled.img`
-  object-fit: cover;
-  object-position: 0 -50px;
-  width: 300px;
-  height: 200px;
+  max-height: 75px;
+  width: auto;
+  height: auto;
 `;
 const LinkWrapper = styled.div`
   display: flex;
   justify-content: space-around;
-  width: 75%;
+  width: 60%;
   height: 50px;
   padding: 10px;
+  margin: 0 5% 0 0;
   align-items: center;
 `;
 
@@ -50,7 +47,7 @@ const Navbar = props => {
     <NavbarContainer>
       <Header>
         <HeaderLogoLink to="/">
-          <HeaderLogo src={WordmarkClay} alt="Jasper Moon Wellness" />
+          <HeaderLogo src={jmlogotypeblk} alt="Jasper Moon Wellness" />
         </HeaderLogoLink>
       </Header>
       <LinkWrapper>
