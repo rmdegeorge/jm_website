@@ -36,7 +36,7 @@ const Blog = props => {
 
       {displayBlogPosts}
 
-      <div>
+      {/* <div>
         <h3>TO DO:</h3>
         <p>{`Blog:`}</p>
         <p>{`>> example site: https://yogaphysics.com/yp/blog/`}</p>
@@ -59,7 +59,7 @@ const Blog = props => {
         <br />
         <p>{`>> Calendar Feed`}</p>
         <br />
-      </div>
+      </div> */}
     </BlogWrapper>
   );
 };

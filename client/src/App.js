@@ -12,6 +12,7 @@ import Store from "./pages/Store";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Admin from "./Admin";
+import About from "./pages/About";
 
 const AppContainer = styled.div``;
 
@@ -23,6 +24,7 @@ const App = props => {
         <Navbar />
         <Switch>
           <Route exact path="/" component={Home} />
+          <Route path="/About" component={About} />
           <Route path="/Classes" component={Classes} />
           <Route path="/CorporateWellness" component={CorporateWellness} />
           <Route path="/Contact" component={Contact} />

@@ -54,10 +54,11 @@ const Navbar = props => {
         </HeaderLogoLink>
       </Header>
       <LinkWrapper>
+        <NavLink to="/About">About</NavLink>
         <NavLink to="/Classes">Classes</NavLink>
         <NavLink to="/CorporateWellness">Corporate Wellness</NavLink>
         <NavLink to="/Blog">Blog</NavLink>
-        <NavLink to="/Store">Store</NavLink>
+        {/* <NavLink to="/Store">Store</NavLink> */}
         <NavLink to="/Contact">Contact</NavLink>
         {token ? (
           <NavLink to="/" onClick={logout}>
