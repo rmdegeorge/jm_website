@@ -22,7 +22,6 @@ export default function EditBlogForm(props) {
   const {
     addNewBlogPost,
     editBlogPost,
-    deleteBlogPost,
     uploadedFile,
     setUploadedFile
   } = useContext(DataContext);
@@ -30,7 +29,6 @@ export default function EditBlogForm(props) {
   const { value: title, bind: bindTitle, setValue: setTitle } = useInput("");
   const { value: body, bind: bindBody, setValue: setBody } = useInput("");
   const { value: tags, bind: bindTags, setValue: setTags } = useInput("");
-  const inputs = { title, body, tags };
 
   const [selectedFile, setSelectedFile] = useState(null);
 
