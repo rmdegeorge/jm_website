@@ -13,7 +13,7 @@ const NavbarContainer = styled.div`
   width: 100%;
   height: auto;
   position: relative;
-  background-color: ${props => props.theme.primary2};
+  background-color: ${props => props.theme.functional1};
   top: 0;
   left: 0;
   right: 0;
