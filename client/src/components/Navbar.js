@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import styled from "styled-components";
-import { Link, withRouter } from "react-router-dom";
+import { withRouter } from "react-router-dom";
 import { DataContext } from "../context/DataContextProvider";
 
 import WordmarkClay from "../assets/JM_wordmark_clay.png";
@@ -46,7 +46,6 @@ const LinkWrapper = styled.div`
 
 const Navbar = props => {
   const { token, logout } = useContext(DataContext);
-  const pathCheckPattern = new RegExp("^/admin", "i");
   return (
     <NavbarContainer>
       <Header>

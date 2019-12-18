@@ -2,9 +2,6 @@ import React, { useContext, useState } from "react";
 import { Button } from "../components/styledFormComponents/StyledFormComponents";
 import styled from "styled-components";
 import { DataContext } from "../context/DataContextProvider";
-import axios from "axios";
-
-import ProgressBar from "./ProgressBar";
 
 const FileUploaderWrapper = styled.div``;
 const UploadedFileDisplay = styled.img`
@@ -13,7 +10,7 @@ const UploadedFileDisplay = styled.img`
 `;
 
 export default function FileUploader(props) {
-  const { uploadFile, uploadedFile, uploadPercent } = useContext(DataContext);
+  const { uploadFile, uploadedFile } = useContext(DataContext);
   const [file, setFile] = useState("");
   const [fileName, setFileName] = useState("Choose file");
 

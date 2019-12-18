@@ -12,7 +12,6 @@ import Store from "./pages/Store";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Admin from "./Admin";
-import ProtectedRoute from "./admin/ProtectedRoute";
 
 const AppContainer = styled.div``;
 
