@@ -49,7 +49,7 @@ const breakpoint = {
   tabletLandscape: "1200px",
   desktop: "1800px"
 };
-export const device = {
+export const media = {
   mobile: `(max-width: ${breakpoint.mobile})`,
   tabletPortrait: `(min-width: ${breakpoint.mobile})`,
   tabletLandscape: `(min-width: ${breakpoint.tabletPortrait})`,
@@ -81,7 +81,8 @@ export const theme = {
   functional1: palette.functional1,
   functional2: palette.functional1,
   functional3: palette.functional1,
-  functional4: palette.functional1
+  functional4: palette.functional1,
+  media
 };
 
 export default GlobalStyle;

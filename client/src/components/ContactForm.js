@@ -11,10 +11,113 @@ import {
 } from "./styledFormComponents/StyledFormComponents";
 
 const FormBody = styled(Form)`
-  > div {
-    display: grid;
+  margin: auto;
+  width: 100%;
+  display: grid;
+  grid-gap: 8px;
+
+  @media (${props => props.theme.media.mobile}) {
+    grid-template-columns: 1fr;
+  }
+  @media (${props => props.theme.media.tabletPortrait}) {
     grid-template-columns: 1fr 1fr;
-    grid-gap: 10px;
+  }
+  @media (${props => props.theme.media.tabletLandscape}) {
+  }
+  @media (${props => props.theme.media.desktop}) {
+  }
+  @media (${props => props.theme.media.desktopLarge}) {
+  }
+`;
+const FirstNameInput = styled(TextInput)`
+  @media (${props => props.theme.media.mobile}) {
+  }
+  @media (${props => props.theme.media.tabletPortrait}) {
+    grid-column: 1 / 2;
+  }
+  @media (${props => props.theme.media.tabletLandscape}) {
+  }
+  @media (${props => props.theme.media.desktop}) {
+  }
+  @media (${props => props.theme.media.desktopLarge}) {
+  }
+`;
+const LastNameInput = styled(TextInput)`
+  @media (${props => props.theme.media.mobile}) {
+  }
+  @media (${props => props.theme.media.tabletPortrait}) {
+    grid-column: 2 / 3;
+  }
+  @media (${props => props.theme.media.tabletLandscape}) {
+  }
+  @media (${props => props.theme.media.desktop}) {
+  }
+  @media (${props => props.theme.media.desktopLarge}) {
+  }
+`;
+const EmailInput = styled(TextInput)`
+  @media (${props => props.theme.media.mobile}) {
+  }
+  @media (${props => props.theme.media.tabletPortrait}) {
+    grid-column: 1 / 2;
+  }
+  @media (${props => props.theme.media.tabletLandscape}) {
+  }
+  @media (${props => props.theme.media.desktop}) {
+  }
+  @media (${props => props.theme.media.desktopLarge}) {
+  }
+`;
+const PhoneInput = styled(TextInput)`
+  @media (${props => props.theme.media.mobile}) {
+  }
+  @media (${props => props.theme.media.tabletPortrait}) {
+    grid-column: 2 / 3;
+  }
+  @media (${props => props.theme.media.tabletLandscape}) {
+  }
+  @media (${props => props.theme.media.desktop}) {
+  }
+  @media (${props => props.theme.media.desktopLarge}) {
+  }
+`;
+const SubjectInput = styled(TextInput)`
+  @media (${props => props.theme.media.mobile}) {
+  }
+  @media (${props => props.theme.media.tabletPortrait}) {
+    grid-column: 1 / span 2;
+  }
+  @media (${props => props.theme.media.tabletLandscape}) {
+  }
+  @media (${props => props.theme.media.desktop}) {
+  }
+  @media (${props => props.theme.media.desktopLarge}) {
+  }
+`;
+const MessageInput = styled(TextArea)`
+  @media (${props => props.theme.media.mobile}) {
+  }
+  @media (${props => props.theme.media.tabletPortrait}) {
+    grid-column: 1 / span 2;
+  }
+  @media (${props => props.theme.media.tabletLandscape}) {
+  }
+  @media (${props => props.theme.media.desktop}) {
+  }
+  @media (${props => props.theme.media.desktopLarge}) {
+  }
+`;
+const SendButton = styled(Submit)`
+  @media (${props => props.theme.media.mobile}) {
+  }
+  @media (${props => props.theme.media.tabletPortrait}) {
+    grid-column: 1 / span 2;
+  }
+  @media (${props => props.theme.media.tabletLandscape}) {
+  }
+  @media (${props => props.theme.media.desktop}) {
+  }
+  @media (${props => props.theme.media.desktopLarge}) {
   }
 `;
 
@@ -54,7 +157,6 @@ function ContactForm(props) {
           alert(
             "Message Sent! Jasper will get back to you as soon as possible."
           );
-          //************* Should make a function that clears the form here *******************//
         } else if (res.data.status === "fail") {
           alert("Message failed to send. Sorry for the inconvenience.");
         }
@@ -75,51 +177,47 @@ function ContactForm(props) {
   };
   return (
     <FormBody onSubmit={handleSubmit}>
-      <div>
-        <TextInput
-          type="text"
-          name="firstName"
-          placeholder="First Name"
-          {...bindFirstName}
-          required
-        />
-        <TextInput
-          type="text"
-          name="lastName"
-          placeholder="Last Name"
-          {...bindLastName}
-        />
-      </div>
-      <div>
-        <TextInput
-          type="email"
-          name="email"
-          placeholder="Email Address"
-          {...bindEmail}
-          required
-        />
-        <TextInput
-          type="phone"
-          name="phone"
-          placeholder="555-555-5555"
-          {...bindPhone}
-        />
-      </div>
-      <TextInput
+      <FirstNameInput
+        type="text"
+        name="firstName"
+        placeholder="First Name"
+        {...bindFirstName}
+        required
+      />
+      <LastNameInput
+        type="text"
+        name="lastName"
+        placeholder="Last Name"
+        {...bindLastName}
+      />
+      <EmailInput
+        type="email"
+        name="email"
+        placeholder="Email Address"
+        {...bindEmail}
+        required
+      />
+      <PhoneInput
+        type="phone"
+        name="phone"
+        placeholder="Phone"
+        {...bindPhone}
+      />
+      <SubjectInput
         type="text"
         name="subject"
         placeholder="Subject"
         {...bindSubject}
         required
       />
-      <TextArea
+      <MessageInput
         type="text"
         name="message"
         placeholder="Type your message here..."
         {...bindMessage}
         required
       />
-      <Submit type="submit">Submit</Submit>
+      <SendButton type="submit">Submit</SendButton>
     </FormBody>
   );
 }
