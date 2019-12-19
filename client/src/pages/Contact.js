@@ -3,12 +3,36 @@ import styled from "styled-components";
 
 import ContactForm from "../components/ContactForm";
 import SocialMediaIconLink from "../components/SocialMediaIconLink";
+import device from "../theme/GlobalStyle";
+
+const {
+  mobile,
+  tabletPortrait,
+  tabletLandscape,
+  desktop,
+  desktopLarge
+} = device;
 
 const ContactContainer = styled.div`
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 16px;
-  margin: 0 5% 0 5%;
+  max-width: 90%;
+  margin: auto;
+  display: flex;
+
+  @media (${props => props.theme.media.mobile}) {
+    flex-direction: column;
+  }
+  @media (${props => props.theme.media.tabletPortrait}) {
+    flex-direction: column;
+  }
+  @media (${props => props.theme.media.tabletLandscape}) {
+    flex-direction: column;
+  }
+  @media (${props => props.theme.media.desktop}) {
+    flex-direction: row;
+  }
+  @media (${props => props.theme.media.desktopLarge}) {
+    flex-direction: row;
+  }
 `;
 const ContactInfoContainer = styled.div``;
 const SocialMediaLinksWrapper = styled.div`
