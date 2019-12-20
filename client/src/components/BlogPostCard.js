@@ -7,7 +7,11 @@ import { Button } from "../components/styledFormComponents/StyledFormComponents"
 import DeleteConfirm from "../components/DeleteConfirm";
 
 const BlogPostCardWrapper = styled.div``;
-const BlogPostImg = styled.img``;
+const BlogPostImg = styled.img`
+  max-width: 100%;
+  width: auto;
+  height: auto;
+`;
 const BlogPostTitle = styled.h2``;
 const BlogPostDate = styled.h4``;
 const BlogPostBodyWrapper = styled.div``;
